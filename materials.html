@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Matières - Gestionnaire de Filaments</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="page-container">
+        <h1>Gestion des Matières de Filaments</h1>
+        <p class="page-subtitle">Ajoutez, modifiez ou supprimez les matières de filaments utilisées dans votre stock.</p>
+        
+        <form id="materialForm">
+            <div class="spool-form-row">
+                <div class="spool-form-col">
+                    <label for="materialName">Nom de la matière :</label>
+                    <input type="text" id="materialName" name="materialName" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+             <button type="button" id="cancelEditMaterial" class="btn btn-secondary" style="display: none; margin-top: 10px;">Annuler l'édition</button>
+        </form>
+
+        <h2>Matières enregistrées</h2>
+        <div class="table-responsive">
+            <table id="materialsTable">
+                <thead>
+                    <tr>
+                        <th>Nom de la matière</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="materialsTableBody">
+                    <!-- Les matières seront injectées ici par JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/materials_manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

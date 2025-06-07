@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Filaments - Gestionnaire de Filaments 3D</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Potentiellement Font Awesome si vous ajoutez des icônes plus spécifiques -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div class="page-container">
+        <header class="page-header">
+            <h1>🧾 Gestion des Bobines de Filament</h1>
+            <p>Ajoutez, visualisez et organisez toutes vos bobines de filament.</p>
+        </header>
+
+        <main class="main-content-columns">
+            <!-- Section pour ajouter ou modifier une bobine -->
+            <section class="content-column-form" id="addEditFilamentSection">
+                <h2 id="formTitle">➕ Ajouter une Nouvelle Bobine</h2>
+                <form id="filamentForm">
+                    <input type="hidden" id="filamentId" name="filamentId"> <!-- Champ caché pour l'ID en mode édition -->
+
+                    <label for="material">Matière:</label>
+                    <select id="material" name="material" required>
+                        <option value="">Sélectionnez une matière</option>
+                        <!-- Les options de matière seront chargées par JavaScript -->
+                    </select>
+
+                                <label for="brand">Marque :</label>
+                                <select id="brand" name="brand" class="form-control">
+                                    <option value="">Sélectionner une marque</option>
+                                    <!-- Les options seront chargées par JavaScript -->
+                                </select>
+
+                    <label for="color">Couleur:</label>
+                    <select id="color" name="color" required>
+                        <option value="">Sélectionnez une couleur</option>
+                        <!-- Les options de couleur seront chargées par JavaScript -->
+                    </select>
+                    <div id="customColorContainer" style="display:none; margin-top:8px;">
+                         <input type="text" id="customColorName" name="customColorName" placeholder="Nom de la nouvelle couleur...">
+                         <input type="text" id="customColorHex" name="customColorHex" placeholder="#RRGGBB (Optionnel)">
+                         <button type="button" id="addNewColorButton" class="btn btn-sm btn-info" style="margin-top:5px;">Ajouter cette couleur</button>
+                    </div>
+                    <button type="button" id="showCustomColorFormButton" class="btn btn-sm btn-secondary" style="margin-top:5px;">Ajouter une nouvelle couleur</button>
+
+                    <label for="totalSpoolWeight">Poids total bobine (g):</label>
+                    <input type="number" id="totalSpoolWeight" name="totalSpoolWeight" min="0" placeholder="Ex: 1250">
+
+                    <label for="spoolType">Type de bobine:</label>
+                    <select id="spoolType" name="spoolType" required>
+                        <option value="">Sélectionnez un type</option>
+                    </select>
+
+                    <label for="initialWeight">Poids matière (g):</label>
+                    <input type="number" id="initialWeight" name="initialWeight" required min="0" placeholder="Ex: 1000">
+
+                    <label for="remainingWeight">Poids restant (g):</label>
+                    <input type="number" id="remainingWeight" name="remainingWeight" required min="0" placeholder="Ex: 750">
+
+                    <label for="location">Emplacement de rangement:</label>
+                    <input type="text" id="location" name="location" placeholder="Ex: Rack 3, Etagère A">
+
+                    <label for="purchaseDate">Date d'achat:</label>
+                    <input type="date" id="purchaseDate" name="purchaseDate">
+
+                    <label for="purchasePrice">Prix d'achat (€):</label>
+                    <input type="number" id="purchasePrice" name="purchasePrice" step="0.01" min="0" placeholder="Ex: 22.50">
+
+                    <label for="minPrintSpeed">Vitesse d'impression minimum (mm/s):</label>
+                    <input type="number" id="minPrintSpeed" name="minPrintSpeed" min="0" placeholder="Ex: 40">
+
+                    <label for="maxPrintSpeed">Vitesse d'impression maximum (mm/s):</label>
+                    <input type="number" id="maxPrintSpeed" name="maxPrintSpeed" min="0" placeholder="Ex: 80">
+
+                    <label for="minTemp">Température minimum (°C):</label>
+                    <input type="number" id="minTemp" name="minTemp" min="0" placeholder="Ex: 190">
+
+                    <label for="maxTemp">Température maximum (°C):</label>
+                    <input type="number" id="maxTemp" name="maxTemp" min="0" placeholder="Ex: 220">
+
+                    <label for="status">Statut:</label>
+                    <select id="status" name="status" required>
+                        <option value="en_stock">En stock</option>
+                        <option value="en_usage">En usage</option>
+                        <option value="bientot_vide">Bientôt vide</option>
+                        <option value="vide">Vide</option>
+                    </select>
+                    <label for="notes">Notes personnalisées:</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Ex: Bonne adhérence, nécessite séchage..."></textarea>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submitButton">Ajouter la Bobine</button>
+                        <button type="button" class="btn btn-secondary" id="cancelEditButton" style="display:none;">Annuler l'Édition</button>
+                    </div>
+                </form>
+                <div id="formNotifications" class="form-message"></div>
+            </section>
+
+            <!-- Section pour afficher la liste des bobines -->
+            <section class="content-column-list">
+                <h2>📋 Liste des Bobines (<span id="totalSpoolsTable">0</span>)</h2>
+
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="filterMaterial">Filtrer par matière:</label>
+                        <select id="filterMaterial">
+                            <option value="">Toutes</option>
+                            <!-- Les options de matière seront chargées par JavaScript -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterColor">Filtrer par couleur:</label>
+                        <select id="filterColor">
+                            <option value="">Toutes</option>
+                            <!-- Les options de couleur seront chargées par JavaScript -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="lowStockThreshold">Seuil stock bas (g):</label>
+                        <input type="number" id="lowStockThreshold" value="100" min="0">
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortSpools">Trier par:</label>
+                        <select id="sortSpools">
+                            <option value="default">Défaut</option>
+                            <option value="name-asc">Nom (A-Z)</option>
+                            <option value="name-desc">Nom (Z-A)</option>
+                            <option value="remaining-asc">Poids restant (Croissant)</option>
+                            <option value="remaining-desc">Poids restant (Décroissant)</option>
+                            <option value="purchaseDate-asc">Date d'achat (Plus ancien)</option>
+                            <option value="purchaseDate-desc">Date d'achat (Plus récent)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="cards-filaments-list" id="cardsFilamentsList"></div>
+                <p id="noFilamentsMessage" style="text-align:center; padding: 20px; display:none;">Aucune bobine à afficher. Commencez par en ajouter une !</p>
+            </section>
+        </main>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Modal de confirmation pour la suppression -->
+    <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content">
+            <h4>Confirmer la suppression</h4>
+            <p>Êtes-vous sûr de vouloir supprimer cette bobine ?</p>
+            <p id="filamentToDeleteDetails"></p>
+            <div class="modal-actions">
+                <button id="confirmDeleteBtn" class="btn btn-danger">Supprimer</button>
+                <button id="cancelDeleteBtn" class="btn btn-secondary">Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/filaments_manager.js"></script>
+    <script>
+      // Affiche le champ texte si 'Autre' est sélectionné
+
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

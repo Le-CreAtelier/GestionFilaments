@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Filaments 3D - Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <h1><span style="font-size:1.5em;margin-right:10px;vertical-align:middle;">📦</span> Gestionnaire de Filaments 3D</h1>
+            <p class="subtitle">Gérez et suivez votre inventaire de filaments d'impression 3D avec facilité et précision.</p>
+            <p>Suivez vos stocks, analysez vos coûts et optimisez votre inventaire de filaments.</p>
+            <button class="btn btn-primary"><span class="btn-icon">👁️</span> Voir mes filaments</button>
+        </div>
+    </header>
+
+    <section class="summary-cards">
+        <div class="card card-total-spools">
+            <h3>TOTAL BOBINES</h3>
+            <p class="value" id="totalSpoolsValue">0</p>
+            <span class="card-icon" style="font-size:1.2em;">🗂️</span>
+        </div>
+        <div class="card card-stock-value">
+            <h3>VALEUR STOCK</h3>
+            <p class="value" id="stockValue">0.00€</p>
+            <span class="card-icon" style="font-size:1.2em;">💶</span>
+        </div>
+        <div class="card card-materials">
+            <h3>MATÉRIAUX</h3>
+            <p class="value" id="materialsCount">0</p>
+            <span class="card-icon" style="font-size:1.2em;">🧬</span>
+        </div>
+        <div class="card card-low-stock">
+            <h3>STOCK BAS</h3>
+            <p class="value" id="lowStockCountValue">0</p>
+            <span class="card-icon" style="font-size:1.2em;">⚠️</span>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="actions-panel">
+            <h2><span class="panel-icon">⚡</span> Actions rapides</h2>
+            <button class="btn btn-action btn-action-blue">+ Ajouter un nouveau filament</button>
+            <button class="btn btn-action btn-action-grey">📊 Voir le tableau de bord</button>
+            <button class="btn btn-action btn-action-grey">💡 Consulter l'assistant IA</button>
+        </section>
+
+        <section class="recent-filaments-panel">
+            <h2><span class="panel-icon">🧵</span> Filaments Récents</h2>
+            <div class="recent-filament-item empty">Aucun filament récent à afficher.</div>
+            <a href="filaments.html" class="view-all-filaments">Voir tous les filaments <span style="font-size:1.1em;">→</span></a>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/app.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

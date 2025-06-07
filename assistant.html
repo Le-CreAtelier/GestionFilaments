@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistant IA - Gestionnaire de Filaments</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div class="page-container">
+        <header class="page-header">
+            <h1>💡 Assistant IA</h1>
+            <p>Posez des questions sur votre stock, demandez des conseils sur vos filaments, ou obtenez de l'aide sur l'application.</p>
+        </header>
+
+        <main class="main-content-columns">
+            <section class="content-column-list" style="flex: 2;">
+                <h2>Conversation</h2>
+                <div id="chat-container" style="height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                    </div>
+                <div id="input-container" style="display: flex; gap: 10px;">
+                    <input type="text" id="userInput" placeholder="Posez votre question ici..." style="flex-grow: 1; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                    <button id="sendButton" class="btn btn-primary">Envoyer</button>
+                </div>
+            </section>
+
+            <aside class="content-column-form" style="flex: 1;">
+                <h2>Contexte de l'IA</h2>
+                <p>Pour chaque question, les données suivantes de votre application sont envoyées au modèle :</p>
+                <ul>
+                    <li>Votre stock complet de filaments.</li>
+                    <li>Vos types de bobines personnalisés.</li>
+                    <li>Les statistiques générales.</li>
+                </ul>
+                <p>L'IA n'a pas accès à vos fichiers directement, uniquement aux données que le navigateur lui envoie.</p>
+            </aside>
+        </main>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/assistant_manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Marques - Gestionnaire de Filaments</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="page-container">
+        <h1>Gestion des Marques de Filaments</h1>
+        <p class="page-subtitle">Ajoutez, modifiez ou supprimez les marques de filaments utilisées dans votre stock.</p>
+        
+        <form id="brandForm">
+            <div class="spool-form-row">
+                <div class="spool-form-col">
+                    <label for="brandName">Nom de la marque :</label>
+                    <input type="text" id="brandName" name="brandName" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+             <button type="button" id="cancelEditBrand" class="btn btn-secondary" style="display: none; margin-top: 10px;">Annuler l'édition</button>
+        </form>
+
+        <h2>Marques enregistrées</h2>
+        <div class="table-responsive">
+            <table id="brandsTable">
+                <thead>
+                    <tr>
+                        <th>Nom de la marque</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="brandsTableBody">
+                    <!-- Les marques seront injectées ici par JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/brands_manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

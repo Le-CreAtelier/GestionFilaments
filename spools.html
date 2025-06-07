@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des types de bobines</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="page-container">
+        <h1>Gestion des types de bobines</h1>
+        <form id="spoolTypeForm">
+            <div class="spool-form-row">
+                <div class="spool-form-col">
+                    <label for="spoolTypeName">Nom du type de bobine :</label>
+                    <input type="text" id="spoolTypeName" required>
+                </div>
+                <div class="spool-form-col">
+                    <label for="spoolTypeWeight">Poids à vide (g) :</label>
+                    <input type="number" id="spoolTypeWeight" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+        <h2>Types de bobines enregistrés</h2>
+        <div class="table-responsive">
+            <table id="spoolTypesTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Poids (g)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody> <!-- Les lignes seront ajoutées par JavaScript -->
+            </table>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+    <script src="js/spools_manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Couleurs - Gestionnaire de Filaments</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+    <div class="page-container">
+        <h1>Gestion des Couleurs de Filaments</h1>
+        <p class="page-subtitle">Ajoutez, modifiez ou supprimez les couleurs de filaments utilisées dans votre stock.</p>
+
+        <form id="colorForm">
+            <div class="spool-form-row">
+                <div class="spool-form-col">
+                    <label for="colorName">Nom de la couleur :</label>
+                    <input type="text" id="colorName" name="colorName" required>
+                </div>
+                <div class="spool-form-col">
+                    <label for="colorHex">Code Hexadécimal :</label>
+                    <input type="text" id="colorHex" name="colorHex" placeholder="#RRGGBB" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+            <button type="button" id="cancelEditColor" class="btn btn-secondary" style="display: none; margin-top: 10px;">Annuler l'édition</button>
+        </form>
+
+        <h2>Couleurs enregistrées</h2>
+        <div class="table-responsive">
+            <table id="colorsTable">
+                <thead>
+                    <tr>
+                        <th>Nom de la couleur</th>
+                        <th>Prévisualisation</th>
+                        <th>Code Hex</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="colorsTableBody">
+                    <!-- Les couleurs seront injectées ici par JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/colors_manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

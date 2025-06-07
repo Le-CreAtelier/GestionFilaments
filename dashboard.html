@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - Gestionnaire de Filaments 3D</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <div class="page-container">
+        <header class="page-header">
+            <h1>📊 Tableau de Bord Analytique</h1>
+            <p>Visualisez les statistiques clés de votre inventaire de filaments.</p>
+        </header>
+
+        <main class="dashboard-main-content">
+            <section class="dashboard-grid">
+                <!-- Carte Résumé : Nombre Total de Bobines -->
+                <div class="dashboard-card">
+                    <h3>Total Bobines</h3>
+                    <p class="dashboard-value" id="dbTotalSpools">N/A</p>
+                    <div class="card-icon-large">📚</div>
+                </div>
+                <!-- Carte Résumé : Valeur Totale du Stock -->
+                <div class="dashboard-card">
+                    <h3>Valeur Totale du Stock</h3>
+                    <p class="dashboard-value" id="dbStockValue">N/A</p>
+                    <div class="card-icon-large">💶</div>
+                </div>
+                <!-- Carte Résumé : Nombre de Matériaux Uniques -->
+                <div class="dashboard-card">
+                    <h3>Types de Matériaux</h3>
+                    <p class="dashboard-value" id="dbMaterialsCount">N/A</p>
+                    <div class="card-icon-large">🧪</div>
+                </div>
+                <!-- Carte Résumé : Bobines en Stock Bas -->
+                <div class="dashboard-card">
+                    <h3>Bobines en Stock Bas</h3>
+                    <p class="dashboard-value" id="dbLowStockCount">N/A</p>
+                    <div class="card-icon-large">⚠️</div>
+                </div>
+            </section>
+
+            <section class="charts-section">
+                <h2>Graphiques d'Utilisation</h2>
+                <div class="charts-grid">
+                    <div class="chart-container-placeholder">
+                        <p>Répartition des matériaux</p>
+                        <canvas id="materialDistributionChart"></canvas>
+                    </div>
+                    <div class="chart-container-placeholder">
+                        <p>Tendance du stock</p>
+                        <canvas id="stockTrendChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+             <section class="detailed-stats">
+                <h2>Statistiques Détaillées</h2>
+                <ul id="detailedStatsList">
+                    <li>Poids total de filament (tous types) : <span id="dbTotalWeightAll">N/A</span> g</li>
+                    <li>Poids moyen par bobine : <span id="dbAvgWeightPerSpool">N/A</span> g</li>
+                    <li>Couleur la plus fréquente : <span id="dbMostFrequentColor">N/A</span></li>
+                    <!-- Plus de stats ici -->
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/dashboard_manager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
